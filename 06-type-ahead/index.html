@@ -31,19 +31,33 @@
         function searchImplementation() {
             const inputValue = this.value
             console.log(inputValue)
-            const filtered = cityDetails.filter((city)=>{ return city.city.includes(inputValue)  })
-            showList(filtered)
+            // const filtered = cityDetails.filter((city)=>{ return city.city.toLowerCase().includes(inputValue.toLowerCase()) || city.state.toLowerCase().includes(inputValue.toLowerCase()) })
+            const filtered = cityDetails.filter((city) => {
+                const regex = new RegExp(inputValue, 'gi')
+                return city.city.match(regex) || city.state.match(regex)
+            })
+
+            showList(filtered, inputValue)
         }
-        function showList(filtered){
+        function showList(filtered, inputValue) {
             const suggestions = document.querySelector('.suggestions')
             let listhtml = ''
             filtered.forEach(city => {
-                     listhtml+= `
-                            <li><span>${city.city} , ${city.state}</span>   ${city.population}</li>
+                const regex = new RegExp(inputValue, 'gi')
+
+                const cityName = city.city.replace(regex, match => `<span class="hl">${match}</span>`)
+
+                const stateName = city.state.replace(regex, match => `<span class="hl">${match}</span>`)
+
+
+                console.log(cityName)
+
+                listhtml += `
+                            <li><span>${cityName} , ${stateName}</span>   ${city.population}</li>
                         `
             });
             suggestions.innerHTML = listhtml
-           
+
         }
     </script>
 
