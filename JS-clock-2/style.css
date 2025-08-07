@@ -1,0 +1,41 @@
+body{
+    padding: 0;
+    margin: 0;
+    background: #018DED;
+    display: flex;
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.clock{
+    width: 40%;
+    border: 5px solid black;
+    /* height: 40%; */
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    position: relative;
+          box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #000000,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+}
+.clock-face{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-3px);
+}  
+.hand{
+    width: 50%;
+    height: 5px;
+    background: black;
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
