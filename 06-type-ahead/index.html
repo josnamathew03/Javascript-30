@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form action="" class="form-div">
+        <input type="text" placeholder="city or state" class="input-con">
+        <ul class="suggestions">
+            <li>Filter for a city</li>
+            <li>or a state</li>
+        </ul>
+    </form>
+
+    <script>
+        const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+        let cityDetails = []
+        async function loadData() {
+            const data = await fetch(endpoint)
+            cityDetails = await data.json()
+            // console.log(cityDetails)
+        }
+        loadData()
+        const input = document.querySelector('.input-con')
+        input.addEventListener('input', searchImplementation)
+        function searchImplementation() {
+            const inputValue = this.value
+            console.log(inputValue)
+            const filtered = cityDetails.filter((city)=>{ return city.city.includes(inputValue)  })
+            showList(filtered)
+        }
+        function showList(filtered){
+            const suggestions = document.querySelector('.suggestions')
+            let listhtml = ''
+            filtered.forEach(city => {
+                     listhtml+= `
+                            <li><span>${city.city} , ${city.state}</span>   ${city.population}</li>
+                        `
+            });
+            suggestions.innerHTML = listhtml
+           
+        }
+    </script>
+
+</body>
+
+</html>
