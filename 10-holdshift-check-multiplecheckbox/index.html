@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="inbox">
+        <div class="item">
+            <input type="checkbox">
+            <p>hey</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Good to see ya</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>how have you been</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Be careful</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Good luck with</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>TBH</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>you look good</p>
+        </div>
+    </div>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(255, 88, 180);
+        }
+
+        .inbox {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            flex-wrap: wrap;
+            align-content: space-around;
+            margin: 40px;
+            font-size: 50px;
+        }
+
+        .item {
+            display: flex;
+            background: #ffffff;
+            border-bottom: 1px solid #9d9b9b;
+
+
+        }
+
+        .item input {
+            width: 40px;
+            margin: 30px !important;
+
+        }
+
+        .item p {
+            padding: 30px;
+            height: 100%;
+            border-left: 1px solid black;
+            margin: 0;
+
+
+        }
+    </style>
+
+    <script>
+        const inputs = document.querySelectorAll('input')
+        let endIndex = null
+        let startIndex = 0
+        function handleSelection(e) {
+            const inputArray = [...inputs]
+
+
+
+            if (e.shiftKey && this.checked) {
+                endIndex = inputArray.indexOf(this)
+                console.log(startIndex)
+                console.log(endIndex)
+                const [min,max] = [Math.min(startIndex,endIndex),Math.max(startIndex,endIndex)]
+                for (i = min; i <= max; i++) {
+                    inputs[i].checked = true
+                }
+            }
+            if (this.checked) {
+                startIndex = inputArray.indexOf(this)
+
+            }
+
+
+        }
+
+        inputs.forEach((input) => {
+            input.addEventListener('click', handleSelection)
+        })
+    </script>
+</body>
+
+</html>
