@@ -83,28 +83,46 @@
 
     <script>
         const inputs = document.querySelectorAll('input')
-        let endIndex = null
-        let startIndex = 0
-        function handleSelection(e) {
-            const inputArray = [...inputs]
+        // let endIndex = null
+        // let startIndex = 0
+        // function handleSelection(e) {
+        //     const inputArray = [...inputs]
 
 
 
-            if (e.shiftKey && this.checked) {
-                endIndex = inputArray.indexOf(this)
-                console.log(startIndex)
-                console.log(endIndex)
-                const [min,max] = [Math.min(startIndex,endIndex),Math.max(startIndex,endIndex)]
-                for (i = min; i <= max; i++) {
-                    inputs[i].checked = true
-                }
+        //     if (e.shiftKey && this.checked) {
+        //         endIndex = inputArray.indexOf(this)
+        //         console.log(startIndex)
+        //         console.log(endIndex)
+        //         const [min,max] = [Math.min(startIndex,endIndex),Math.max(startIndex,endIndex)]
+        //         for (i = min; i <= max; i++) {
+        //             inputs[i].checked = true
+        //         }
+        //     }
+        //     if (this.checked) {
+        //         startIndex = inputArray.indexOf(this)
+
+        //     }
+
+
+        // }
+
+        let lastChecked
+
+        function handleSelection(e){
+            let inBetween = false 
+
+            if(e.shiftKey && this.checked){
+                inputs.forEach(input=>{
+                    if(input===this || input=== lastChecked){
+                        inBetween = !inBetween
+                    }
+                    if(inBetween){
+                        input.checked = true
+                    }
+                })
             }
-            if (this.checked) {
-                startIndex = inputArray.indexOf(this)
-
-            }
-
-
+            lastChecked = this
         }
 
         inputs.forEach((input) => {
