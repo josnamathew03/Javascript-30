@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./cornify.js"></script>
+</head>
+<body>
+    <script>
+        const pressed = []
+        const secretCode = 'wesbos'
+        window.addEventListener('keydown',(e)=>{
+            console.log(e.key)
+            pressed.push(e.key)
+            pressed.splice(secretCode.length-1,pressed.length-secretCode.length)
+            if(pressed.join("").includes(secretCode)){
+                console.log("ding ding")
+                cornify_add()
+            }
+            console.log(pressed)
+        })
+    </script>
+</body>
+</html>
