@@ -1,0 +1,65 @@
+html,body{
+    margin:0;
+    padding: 0;
+    height: 100vh;
+    
+}
+*{
+    box-sizing: border-box;
+}
+body{
+    background-image: url(./oh-la-la.jpeg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.con{
+    background-color:  rgb(247, 247, 247);;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    gap: 0;
+}
+h2{
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace; 
+    margin-bottom: 0;
+}
+.form-con{
+    display: flex;
+    padding: 20px;
+}
+.form-con input{
+    font-size: 20px;
+    border: none;
+}
+.form-con button{
+border: none;
+padding: 10px;
+}
+.plates{
+    display: flex;
+        flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+
+}
+.plates li{
+    list-style: none;
+    font-size: 20px;
+    padding: 2px;
+    display: flex;
+}
+.plates input{
+    /* padding: 20px !important; */
+    /* margin: 10px; */
+    position: relative;
+}
+/* .plates input:checked:after{
+    content: '🌮';
+    position: absolute;
+} */

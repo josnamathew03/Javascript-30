@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="con">
+        <h2>Local tapas</h2>
+        <!-- <p></p> -->
+        <ul class="plates">
+            <li>Loading Tapas...</li>
+        </ul>
+        <form action="" class="form-con">
+            <input type="text" name="item" placeholder="Item name" required>
+            <button type="submit">+ Add item</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('.form-con')
+        const plates = document.querySelector('.plates')
+        const itemArray = JSON.parse(localStorage.getItem('items')) || []
+
+
+        function addData(e) {
+            e.preventDefault()
+
+            // const formData = new FormData(form) 
+            //  const item = formData.get('item')
+
+            const item = (this.querySelector('[name=item]')).value
+            itemArray.push({ name: item, flag: false })
+            localStorage.setItem('items', JSON.stringify(itemArray))
+            renderLi()
+        }
+        function renderLi() {
+            // const localItem = JSON.parse(localStorage.getItem('items'))
+
+            let html = ''
+            itemArray.forEach((item, i) => {
+                html += `
+                        <li>
+                            <input data-index = ${i} type="checkbox"  ${item.flag ? 'checked' : ''} class="check">
+                            ${item.name} 
+                        </li>
+                        `
+            })
+            plates.innerHTML = html
+
+            // const checks = document.querySelectorAll('.check')
+            // checks.forEach((check) => check.addEventListener('change', addCheck))
+
+        }
+
+        function addCheck(e) {
+            if(!e.target.matches('input')) return
+            const index = e.target.dataset.index
+            let flag = itemArray[index].flag 
+            itemArray[index].flag =!flag
+            localStorage.setItem('items', JSON.stringify(itemArray))
+        }
+
+        form.addEventListener('submit', addData)
+        renderLi()
+
+        plates.addEventListener('change',addCheck) //event delegation
+
+    </script>
+</body>
+
+</html>
