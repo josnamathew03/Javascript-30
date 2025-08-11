@@ -184,20 +184,36 @@
   </ul>
 
   <script>
-    const timeArray = []
-    let timetotal = 0
     const li = document.querySelectorAll('li')
-    li.forEach(item=>{
-        timeArray.push(item.dataset.time)
-    })
-    timeArray.forEach(time=>{
-        const [min,sec] = time.split(':').map(Number)
-        timetotal+= (min*60) + sec
-    })
-    console.log(timetotal)
-    const hr = Math.floor(timetotal/3600)
-    const min = Math.floor((timetotal%3600)/60)
-    const sec = timetotal % 60
+
+    // const timeArray = []
+    // let timetotal = 0
+    // const li = document.querySelectorAll('li')
+    // li.forEach(item=>{
+    //     timeArray.push(item.dataset.time)
+    // })
+    // timeArray.forEach(time=>{
+    //     const [min,sec] = time.split(':').map(Number)
+    //     timetotal+= (min*60) + sec
+    // })
+    // console.log(timetotal)
+    // const hr = Math.floor(timetotal/3600)
+    // const min = Math.floor((timetotal%3600)/60)
+    // const sec = timetotal % 60
+    // console.log(hr,min,sec)
+
+    const nodeList = [...li]
+    const timeTotal = nodeList.map(node=>node.dataset.time)
+                        .reduce((accu,cur)=>{
+                            const [min,sec] = cur.split(':').map(Number)
+                            return accu += (min * 60)+sec
+
+                        },0)
+
+    console.log(timeTotal)
+       const hr = Math.floor(timeTotal/3600)
+    const min = Math.floor((timeTotal%3600)/60)
+    const sec = timeTotal % 60
     console.log(hr,min,sec)
 
   </script>
