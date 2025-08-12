@@ -15,7 +15,7 @@
             <li>Filter for a city</li>
             <li>or a state</li>
         </ul>
-    </form>
+    </form>                
 
     <script>
         const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
@@ -40,7 +40,7 @@
             showList(filtered, inputValue)
         }
         function showList(filtered, inputValue) {
-            const suggestions = document.querySelector('.suggestions')
+            const suggestions = document.querySelector('.suggestions')                          
             let listhtml = ''
             filtered.forEach(city => {
                 const regex = new RegExp(inputValue, 'gi')
