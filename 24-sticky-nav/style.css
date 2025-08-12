@@ -102,3 +102,8 @@ nav a {
     max-width: 500px !important;
 
 }
+
+.trigger-enter .dropdown{
+    display: block;
+    opacity: 1;
+}
