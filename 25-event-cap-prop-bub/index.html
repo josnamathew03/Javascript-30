@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="bod">
+    <div class="one">
+        <div class="two">
+            <div class="three">
+
+            </div>
+        </div>
+    </div>
+    <button style="width: 20px;">ffff</button>
+
+
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        div {
+            width: 100%;
+            padding: 100px;
+        }
+
+        .one {
+            background: thistle;
+        }
+
+        .two {
+            background: mistyrose;
+        }
+
+        .three {
+            background: coral;
+        }
+    </style>
+    <script>
+        const divs = document.querySelectorAll('div')
+        const button = document.querySelector('button')
+
+
+        function log(e){
+            // console.log(e.target)
+            e.stopPropagation()
+            console.log(this.classList.value)
+        }
+
+        // document.body.addEventListener('click',log)
+        divs.forEach(div=>div.addEventListener('click',log,{once:true})) //In addEventListener,once: true means:“Run this event listener only one time, then remove it automatically.”
+        // divs.forEach(div=>div.addEventListener('click',log))
+
+        button.addEventListener('click',()=>{
+            console.log(hey)
+        },{once:true})
+
+    </script>
+</body>                                                                                          
+</html>
