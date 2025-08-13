@@ -46,7 +46,7 @@ timerC.addEventListener('click',(e)=>{
 })
 
 input.addEventListener('change',(e)=>{
-    timer((e.target.value)*60)                                       
+    timer((e.target.value)*60)                                                                  
 })
 
                                                    
