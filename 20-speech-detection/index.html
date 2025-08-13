@@ -63,7 +63,31 @@
         recognition.addEventListener('results',e=>{
             console.log(e)
         })
+
+        recognition.addEventListener('result',e=>{
+            const trsnscipt = Array.from(e.results)
+            .map(result => result[0])
+            .map(result => result.trsnscipt)
+            .join('')
+
+            p.textContent = trsnscipt
+            if(e.results[0].isFinal){
+                p = document.createElement('p')
+                words.appendChild(p)
+            }
+
+            if(trsnscipt.includes('get the weather')){
+                console.log('getting the weather')
+            }
+        })
+        recognition.addEventListener('end',recognition.start)
+
+
         recognition.start()
+
+
+
+
     </script>
 </body>
 
